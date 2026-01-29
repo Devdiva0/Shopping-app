@@ -1,5 +1,5 @@
 /***************** Item Page CSS **************************/
-/*.action_container {
+.action_container {
     text-decoration: none;
 }
 a.action_container:link {
@@ -69,7 +69,7 @@ a.action_container:link {
     font-size: 20px;
     cursor: pointer;
 }
-.bag-items {
+.bag-item-count {
     background-color: #f16565;
     white-space: nowrap;
     text-align: center;
@@ -84,7 +84,7 @@ a.action_container:link {
     top: -44px;
     font-weight: 700;
     cursor: pointer;
-}*/
+} 
 
 * {
     margin: 0;
@@ -310,12 +310,14 @@ header {
 
 .btn-add-bag {
     margin-top:8px;
-    width:100%;
-    font-size: 18px;
-    background-color: #f54e77;
-    color:#FAFBFC;
-    border:none;
-    padding:5px 15px;
+    width: 100%;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 600;
     border-radius: 20px;
+    border-width: 0px;
+    padding: 10px 16px;
+    background-color: rgb(255, 63, 108);
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
