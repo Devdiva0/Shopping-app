@@ -1,12 +1,36 @@
-displayItemsOnHomePage();
+let bagItems;
+onload();
 
-function addToBag(){
-
+function onload() {
+    let bagItemStr =localStorage.getItem('bagItems');
+    bagItems = bagItemStr ? JSON.parse(bagItemStr) : [];
+    displayItemsOnHomePage();
+    displayBagCount();
 }
+
+function addToBag(itemId) {
+    bagItems.push(itemId);
+    localStorage.setItem('bagItems', JSON.stringify(bagItems));
+    displayBagCount();
+}
+
+function displayBagCount() {
+    let bagItemCountElement = document.querySelector('.bag-item-count');
+    if (bagItems.length > 0) {
+        bagItemCountElement.style.visibility = 'visible';
+        bagItemCountElement.innerText = bagItems.length;
+    }
+    else {
+        bagItemCountElement.style.visibility = 'hidden';
+    }
+}
+
 
 function displayItemsOnHomePage() {
     let itemsContainerElement = document.querySelector('.items-container');
-
+    if (!itemsContainerElement){
+        return;
+    }
     let innerHTML = '';
     function renderItems(items) {
         itemsContainerElement.innerHTML = '';
@@ -24,7 +48,7 @@ function displayItemsOnHomePage() {
                     <span class="original-price">Rs. ${item.original_price}</span>
                     <span class="discount">(${item.discount_percentage}% OFF)</span>
                 </div>
-                <button class="btn-add-bag" onclick="addToBag()">Add to Bag</button>
+                <button class="btn-add-bag" onclick="addToBag(${item.id})">Add to Bag</button>
             </div>
     `});
         itemsContainerElement.innerHTML = innerHTML;
