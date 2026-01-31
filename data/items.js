@@ -1,4 +1,4 @@
-const items = [
+let localItems = [
     {
         id: '001',
         image: '../images/1.jpg',
@@ -118,3 +118,31 @@ const items = [
         },
     }
 ];
+
+let items=[...localItems];
+
+function fetchProducts() {
+  fetch("https://dummyjson.com/products")
+    .then(res => res.json())
+    .then(data => {
+      const apiItems = data.products.map(product => ({
+        id: product.id.toString(),
+        image: product.thumbnail,
+        company: product.brand,
+        item_name: product.title,
+        original_price: product.price + 1000,
+        current_price: product.price,
+        discount_percentage: 50,
+        return_period: 14,
+        delivery_date: "10 Oct 2023",
+        rating: {
+          stars: product.rating,
+          count: Math.floor(Math.random() * 5000),
+        }
+      }));
+
+      items = [...items, ...apiItems]; 
+      displayItemsOnHomePage();        // call UI render
+    })
+    .catch(err => console.error(err));
+}

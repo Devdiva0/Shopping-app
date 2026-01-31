@@ -1,13 +1,13 @@
 let bagItems;
-onload();
 
-function onload() {
-    let bagItemStr =localStorage.getItem('bagItems');
+window.addEventListener("DOMContentLoaded", () => {
+    let bagItemStr = localStorage.getItem('bagItems');
     bagItems = bagItemStr ? JSON.parse(bagItemStr) : [];
+
     displayItemsOnHomePage();
     displayBagCount();
-}
-
+    fetchProducts();   // VERY IMPORTANT
+});
 function addToBag(itemId) {
     bagItems.push(itemId);
     localStorage.setItem('bagItems', JSON.stringify(bagItems));
